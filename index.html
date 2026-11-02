@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Joyce Belarmino Coiffeur | Agendamento</title>
+  <meta name="description" content="Agende seu horário com Joyce Belarmino Coiffeur. Progressiva, botox, escova, coloração e muito mais. Atendimento direto no WhatsApp." />
+  <meta name="theme-color" content="#d4af37" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Joyce Coiffeur" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f0d878;
+      --gold-dark: #b8860b;
+      --black: #0a0a0a;
+      --dark: #121212;
+      --card: #1a1a1a;
+      --text: #f5f5f5;
+      --muted: #a0a0a0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--gold);
+    }
+
+    .logo-header img {
+      height: 48px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .btn-whatsapp-header {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-whatsapp-header:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0a0a 0%, #121212 100%);
+      position: relative;
+    }
+
+    .hero-logo {
+      max-width: 280px;
+      width: 80%;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.35));
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .hero .tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #0a0a0a;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1.5px solid var(--gold);
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    section {
+      padding: 4.5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .service-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.06);
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+    }
+
+    .price {
+      color: var(--gold-light);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .booking {
+      background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 2.5rem 1.5rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: #1e1e1e;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .contact-info a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info p {
+      margin: 0.4rem 0;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 12px;
+      border: 2px solid var(--gold);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo-header">
+      <img src="logo.png" alt="Joyce Belarmino" />
+      <span class="logo-text">Joyce Belarmino</span>
+    </a>
+    <nav>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#agendar">Agendar</a>
+    </nav>
+    <a href="https://wa.me/5521965474301" class="btn-whatsapp-header" target="_blank" rel="noopener">
+      WhatsApp
+    </a>
+  </header>
+
+  <section class="hero">
+    <img src="logo.png" alt="Joyce Belarmino Coiffeur" class="hero-logo" />
+    <h1>Joyce Belarmino Coiffeur</h1>
+    <p class="tagline">Beleza, brilho e transformação nos seus cabelos</p>
+    <div class="hero-cta">
+      <a href="#agendar" class="btn-primary">Agendar Horário</a>
+      <a href="#trabalhos" class="btn-outline">Ver Trabalhos</a>
+    </div>
+  </section>
+
+  <section id="trabalhos">
+    <h2 class="section-title">Nossos Trabalhos</h2>
+    <p class="section-subtitle">Resultados reais de progressivas, botox, colorações e tratamentos</p>
+    <div class="gallery" id="gallery" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+      <img src="logo.png" alt="Joyce Belarmino" style="aspect-ratio:1;object-fit:contain;background:#111;padding:1rem;" />
+      <img src="logo.png" alt="Joyce Belarmino" style="aspect-ratio:1;object-fit:contain;background:#111;padding:1rem;" />
+      <img src="logo.png" alt="Joyce Belarmino" style="aspect-ratio:1;object-fit:contain;background:#111;padding:1rem;" />
+    </div>
+    <p style="text-align:center;color:#a0a0a0;margin-top:1rem;">Mais fotos dos trabalhos em breve • Siga @joyce_belarmino</p>
+  </section>
+
+  <section id="servicos">
+    <h2 class="section-title">Tabela de Serviços</h2>
+    <p class="section-subtitle">Valores atualizados • Consulte disponibilidade</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Progressiva c/ Formol</h3>
+        <div class="service-item"><span>Cabelo curto</span><span class="price">R$ 80</span></div>
+        <div class="service-item"><span>Cabelo médio</span><span class="price">R$ 100</span></div>
+        <div class="service-item"><span>Cabelo longo</span><span class="price">R$ 150</span></div>
+      </div>
+      <div class="service-card">
+        <h3>Progressiva s/ Formol</h3>
+        <div class="service-item"><span>Cabelo curto</span><span class="price">R$ 150</span></div>
+        <div class="service-item"><span>Cabelo médio</span><span class="price">R$ 200</span></div>
+        <div class="service-item"><span>Cabelo longo</span><span class="price">R$ 250</span></div>
+      </div>
+      <div class="service-card">
+        <h3>Corte & Escovas</h3>
+        <div class="service-item"><span>Corte</span><span class="price">R$ 40</span></div>
+        <div class="service-item"><span>Coloração</span><span class="price">R$ 30</span></div>
+        <div class="service-item"><span>Escova c/ Hidratação</span><span class="price">a partir de R$ 45</span></div>
+        <div class="service-item"><span>Escova simples</span><span class="price">a partir de R$ 40</span></div>
+      </div>
+      <div class="service-card">
+        <h3>Cronograma & Outros</h3>
+        <div class="service-item"><span>Cronograma Capilar</span><span class="price">R$ 250</span></div>
+        <div class="service-item"><span>Cauterização</span><span class="price">a partir de R$ 80</span></div>
+      </div>
+      <div class="service-card">
+        <h3>Botox</h3>
+        <div class="service-item"><span>Botox c/ Formol</span><span class="price">a partir de R$ 50</span></div>
+        <div class="service-item"><span>Botox s/ Formol</span><span class="price">a partir de R$ 70</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agendar">
+    <h2 class="section-title">Agende seu Horário</h2>
+    <p class="section-subtitle">Preencha o formulário e envie direto no WhatsApp da Joyce</p>
+    
+    <div class="booking">
+      <form id="bookingForm" onsubmit="return sendToWhatsApp(event)">
+        <div class="form-group">
+          <label for="nome">Seu nome *</label>
+          <input type="text" id="nome" name="nome" required placeholder="Como podemos te chamar?" />
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Seu WhatsApp *</label>
+          <input type="tel" id="telefone" name="telefone" required placeholder="(21) 99999-9999" />
+        </div>
+
+        <div class="form-group">
+          <label for="servico">Serviço desejado *</label>
+          <select id="servico" name="servico" required>
+            <option value="">Selecione o serviço</option>
+            <option value="Progressiva com Formol">Progressiva com Formol</option>
+            <option value="Progressiva sem Formol">Progressiva sem Formol</option>
+            <option value="Botox com Formol">Botox com Formol</option>
+            <option value="Botox sem Formol">Botox sem Formol</option>
+            <option value="Cronograma Capilar">Cronograma Capilar</option>
+            <option value="Cauterização">Cauterização</option>
+            <option value="Corte">Corte</option>
+            <option value="Coloração">Coloração</option>
+            <option value="Escova com Hidratação">Escova com Hidratação</option>
+            <option value="Escova simples">Escova simples</option>
+            <option value="Outro / Consulta">Outro / Consulta</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="data">Data preferida</label>
+            <input type="date" id="data" name="data" />
+          </div>
+          <div class="form-group">
+            <label for="horario">Horário preferido</label>
+            <select id="horario" name="horario">
+              <option value="">Qualquer horário</option>
+              <option value="Manhã (9h-12h)">Manhã (9h-12h)</option>
+              <option value="Tarde (13h-17h)">Tarde (13h-17h)</option>
+              <option value="Final da tarde (17h-19h)">Final da tarde (17h-19h)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="obs">Observações (tamanho do cabelo, preferências...)</label>
+          <textarea id="obs" name="obs" placeholder="Ex: cabelo longo, quero progressiva sem formol..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Enviar pedido no WhatsApp
+        </button>
+        <p class="form-note">Você será redirecionado para o WhatsApp com a mensagem pronta para enviar.</p>
+      </form>
+
+      <div class="contact-info">
+        <p>Ou fale diretamente:</p>
+        <p><a href="https://wa.me/5521965474301" target="_blank">WhatsApp: (21) 96547-4301</a></p>
+        <p><a href="https://instagram.com/joyce_belarmino" target="_blank">Instagram: @joyce_belarmino</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Joyce Belarmino Coiffeur • Feito com 💛</p>
+    <p style="margin-top:0.5rem"><a href="https://instagram.com/joyce_belarmino" target="_blank">@joyce_belarmino</a></p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="Trabalho" />
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER = '5521965474301';
+
+    function sendToWhatsApp(e) {
+      e.preventDefault();
+      
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const servico = document.getElementById('servico').value;
+      const data = document.getElementById('data').value;
+      const horario = document.getElementById('horario').value;
+      const obs = document.getElementById('obs').value.trim();
+
+      let msg = `Olá Joyce! 👋%0A%0A*Quero agendar um horário:*%0A%0A`;
+      msg += `👤 *Nome:* ${nome}%0A`;
+      msg += `📱 *Meu WhatsApp:* ${telefone}%0A`;
+      msg += `💇 *Serviço:* ${servico}%0A`;
+      
+      if (data) {
+        const [y, m, d] = data.split('-');
+        msg += `📅 *Data preferida:* ${d}/${m}/${y}%0A`;
+      }
+      if (horario) {
+        msg += `⏰ *Horário preferido:* ${horario}%0A`;
+      }
+      if (obs) {
+        msg += `%0A📝 *Observações:*%0A${obs}%0A`;
+      }
+      
+      msg += `%0AAguardo seu retorno! ✨`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+      window.open(url, '_blank');
+      return false;
+    }
+
+    document.querySelectorAll('#gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightboxImg').src = img.src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('PWA pronto:', reg.scope))
+          .catch(err => console.log('SW erro:', err));
+      });
+    }
+  </script>
+</body>
+</html>
